@@ -29,8 +29,8 @@ app.get('/host', (req, res) => res.render('host', Object.assign({ title }, getDa
 
 io.on('connection', (socket) => {
   socket.on('join', (user) => {
-    data.users.add(user.id)
-    io.emit('active', [...data.users].length)
+    data.users.add(user)
+    io.emit('active', [...data.users])
     console.log(`${user.name} joined!`)
   })
 
@@ -44,6 +44,13 @@ io.on('connection', (socket) => {
     data.buzzes = new Set()
     io.emit('buzzes', [...data.buzzes])
     console.log(`Clear buzzes`)
+  })
+
+  socket.on('deactivate', () => {
+    data.users = new Set()
+    io.emit('deactivate', [])
+    io.emit('active', [...data.users])
+    console.log(`Clear users`)
   })
 })
 

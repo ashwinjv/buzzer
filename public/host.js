@@ -1,10 +1,13 @@
 const socket = io()
-const active = document.querySelector('.js-active')
+const activeList = document.querySelector('.js-active')
 const buzzList = document.querySelector('.js-buzzes')
 const clear = document.querySelector('.js-clear')
+const deactivate = document.querySelector('.js-deactivate')
 
-socket.on('active', (numberActive) => {
-  active.innerText = `${numberActive} joined`
+socket.on('active', (users) => {
+  activeList.innerText =  users
+    .map(user => `<li>${user.name} on Team ${user.team}</li>`)
+    .join('')
 })
 
 socket.on('buzzes', (buzzes) => {
@@ -19,5 +22,9 @@ socket.on('buzzes', (buzzes) => {
 
 clear.addEventListener('click', () => {
   socket.emit('clear')
+})
+
+deactivate.addEventListener('click', () => {
+  socket.emit('deactivate')
 })
 

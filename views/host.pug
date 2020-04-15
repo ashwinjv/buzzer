@@ -9,7 +9,12 @@ html
       img.logo(src='/buzzer-logo.svg')
 
     div.container
-      h2.js-active=`${users.length} joined`
+      h2=`Active Members`
+      ol.js-active
+        each user in users
+          li=`${user.name} on Team ${user.team}`
+      button.js-deactivate='Clear Members'
+      h2=`Buzzes`
       ol.js-buzzes
         each buzz in buzzes
           li=`${buzz.name} on Team ${buzz.team}`

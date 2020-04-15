@@ -18,6 +18,9 @@ const getUserInfo = () => {
 const saveUserInfo = () => {
   localStorage.setItem('user', JSON.stringify(user))
 }
+const deleteUserInfo = () => {
+  localStorage.removeItem('user')
+}
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -42,6 +45,15 @@ editInfo.addEventListener('click', () => {
   joined.classList.add('hidden')
   form.classList.remove('hidden')
   body.classList.remove('buzzer-mode')
+})
+
+socket.on('deactivate', () => {
+  console.log(`deactivate users`)
+  deleteUserInfo()
+  joined.classList.add('hidden')
+  form.classList.remove('hidden')
+  body.classList.remove('buzzer-mode')
+
 })
 
 getUserInfo()
