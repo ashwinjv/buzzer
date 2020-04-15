@@ -52,7 +52,7 @@ This repo comes setup with all the scripts needed to deploy the app using Lets E
     ```
     git clone https://github.com/ashwinjv/buzzer
     ```
-1. Add your domains and email addresses to init-letsencrypt.sh
+1. Add your domains and email addresses to `init-letsencrypt.sh`
 1. Run the script
     ```
     ./init-letsencrypt.sh
