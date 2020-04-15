@@ -1,0 +1,3 @@
+Component,Origin,License
+core,github.com/bufferapp/buzzer,MIT
+deploy,github.com/wmnnd/nginx-certbot,MIT
