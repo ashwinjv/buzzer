@@ -4,6 +4,8 @@
 
 A little buzzer app for running your own quizzes or game shows! Uses websockets to sent messages.
 
+Based on https://github.com/bufferapp/buzzer
+
 ## Running the app
 
 You'll need [Node.js](https://nodejs.org) or [Docker](https://www.docker.com/) to run this
