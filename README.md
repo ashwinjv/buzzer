@@ -43,7 +43,7 @@ This repo comes setup with all the scripts needed to deploy the app using Lets E
 
 1. Launch an EC2 instance in AWS (a `t2.micro` should be sufficient)
 1. Setup the security group to allow access from anywhere in ports 80 (HTTP) and 443 (HTTPS)
-1. Setup the DNS server on your domain to point your domain/domains to the EC2 instance public IP
+1. Setup the DNS settings for your domain/domains to point to the EC2 instance public IP
 1. SSH into the EC2 instance and install git
 ```
 sudo yum install -y git
@@ -58,7 +58,7 @@ git clone https://github.com/ashwinjv/buzzer
 ./init-letsencrypt.sh
 ```
 
-The buzzer app should now be at https://<domain-name>
+The buzzer app should now be at `https://<domain-name>`
 
 ## License
 
