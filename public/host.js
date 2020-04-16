@@ -5,7 +5,7 @@ const clear = document.querySelector('.js-clear')
 const deactivate = document.querySelector('.js-deactivate')
 
 socket.on('active', (users) => {
-  activeList.innerText =  users
+  activeList.innerHTML =  users
     .map(user => `<li>${user.name} on Team ${user.team}</li>`)
     .join('')
 })
