@@ -12,13 +12,22 @@ html
       h2=`Active Members`
       ol.js-active
         each user in users
-          li=`${user.name} on Team ${user.team}`
-      button.js-deactivate='Clear Members'
+          li
+            p.user-list.js-user-list(title="")=`${user.name} on Team ${user.team}`
+            div.kick-container.js-kick-container(onclick=`kick('${user.id}')`)
+              div.leftright
+              div.rightleft
+              p.hidden=`${user.name}`
+              label.kick="kick"
+      button.big-button.js-deactivate='Clear Members'
       h2=`Buzzes`
       ol.js-buzzes
         each buzz in buzzes
           li=`${buzz.name} on Team ${buzz.team}`
-      button.js-clear='Clear buzzes'
+      button.big-button.js-clear='Clear buzzes'
+
+    div.container
+      div.js-timer-app
 
     script(src='/socket.io/socket.io.js')
     script(src='/host.js')

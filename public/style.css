@@ -93,7 +93,7 @@ input[type="number"]:active {
   outline: none;
 }
 
-button {
+.big-button {
   padding: 1.4em 1.4em;
   font-size: 1.2em;
   background-color: #161D99;
@@ -102,16 +102,16 @@ button {
   border: 0;
 }
 
-button:hover {
+.big-button:hover {
   background-color: rgb(22, 29, 153);
 }
 
-button:active {
+.big-button:active {
   box-shadow: rgb(171, 183, 255) 0px 0px 0px 3px;
   outline: 0px;
   transform: translateY(  1px);
 }
-button:focus {
+.big-button:focus {
   box-shadow: 0 0 0 3px #ABB7FF;
 }
 
@@ -140,4 +140,129 @@ button:focus {
 
 .secondary:hover {
   background-color: rgb(44, 75, 255);
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.user-list {
+  display: inline-block;
+  margin: 0.1em 0;
+}
+
+.kick-container{
+  position: relative;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
+.leftright{
+  height: 0.2em;
+  width: 1.5em;
+  position: absolute;
+  margin-top: 0.5em;
+  background-color: #F4A259;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 0.2em;
+  width: 1.5em;
+  position: absolute;
+  margin-top: 0.5em;
+  background-color: #F4A259;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+label{
+  color: black;
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: all .3s ease-in;
+  opacity: 0;
+}
+.kick{
+  margin: 0.5em 4em 0 3em;
+  position: absolute;
+}
+
+.kick-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: #F25C66;
+}
+.kick-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: #F25C66;
+}
+.kick-container:hover label{
+  opacity: 1;
+}
+
+
+.timer {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
+
+.timer-svg {
+  transform: scaleX(-1);
+}
+
+.timer-circle {
+  fill: none;
+  stroke: none;
+}
+
+.timer-path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.timer-path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.timer-path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.timer-path-remaining.orange {
+  color: orange;
+}
+
+.timer-path-remaining.red {
+  color: red;
+}
+
+.timer-label {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
 }

@@ -14,7 +14,7 @@ let data = {
 }
 
 const getData = () => ({
-  users: [...data.users],
+  users: [...data.users].map(u => JSON.parse(u)),
   buzzes: [...data.buzzes].map(b => {
     const [ name, team ] = b.split('-')
     return { name, team }
@@ -28,10 +28,11 @@ app.get('/', (req, res) => res.render('index', { title }))
 app.get('/host', (req, res) => res.render('host', Object.assign({ title }, getData())))
 
 io.on('connection', (socket) => {
+  
   socket.on('join', (user) => {
-    data.users.add(user)
-    io.emit('active', [...data.users])
-    console.log(`${user.name} joined!`)
+    data.users.add(JSON.stringify(user))
+    io.emit('active', [...data.users].map(u => JSON.parse(u)))
+    console.log(`${JSON.stringify(user)} joined!`)
   })
 
   socket.on('buzz', (user) => {
@@ -49,8 +50,19 @@ io.on('connection', (socket) => {
   socket.on('deactivate', () => {
     data.users = new Set()
     io.emit('deactivate', [])
-    io.emit('active', [...data.users])
+    io.emit('active', [...data.users].map(u => JSON.parse(u)))
     console.log(`Clear users`)
+  })
+
+  socket.on('getUserList', () => {
+    io.emit('active', [...data.users].map(u => JSON.parse(u)))
+  })
+
+  socket.on('kick', (kickUser) => {
+    console.log(`kick user ${JSON.stringify(kickUser)}`)
+    data.users.delete(JSON.stringify(kickUser))
+    io.emit('kick', kickUser)
+    io.emit('active', [...data.users].map(u => JSON.parse(u)))
   })
 })
 

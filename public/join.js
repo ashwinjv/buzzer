@@ -26,9 +26,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault()
   user.name = form.querySelector('[name=name]').value
   user.team = form.querySelector('[name=team]').value
-  if (!user.id) {
-    user.id = Math.floor(Math.random() * new Date())
-  }
+  user.id = `${user.name}-${user.team}`.replace(/[^a-z0-9]/gi, '_').toLowerCase()
   socket.emit('join', user)
   saveUserInfo()
   joinedInfo.innerText = `${user.name} on Team ${user.team}`
@@ -54,6 +52,16 @@ socket.on('deactivate', () => {
   form.classList.remove('hidden')
   body.classList.remove('buzzer-mode')
 
+})
+
+socket.on('kick', (kickUser) => {
+  console.log(`kick user ${kickUser.id}`)
+  if (user.id === kickUser.id) {
+    deleteUserInfo()
+    joined.classList.add('hidden')
+    form.classList.remove('hidden')
+    body.classList.remove('buzzer-mode')
+  }
 })
 
 getUserInfo()
